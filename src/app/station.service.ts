@@ -42,13 +42,13 @@ export class StationService {
     return this.af.database.list('/stations/'+ name);
   }
   
-  
+  previewStation: StationResponse;
   viewStation(stNumber){
     this.getStation(stNumber)
       .subscribe(
         data => {
           let stationResponse = new StationResponse(data.results[0].id ,data.results[0].name, data.results[0].time, data.results[0].T, data.results[0].F, data.results[0].valid );
-          console.log(stationResponse)
+          this.previewStation = stationResponse;
         }
       );
   }

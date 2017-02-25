@@ -9,6 +9,7 @@
       {{ s.name }}
     </option>
   </select>
-  <button md-button (click)="getStat(station.value)">Sækja</button>
+  <button md-button (click)="previewStation(station.value)">Sækja</button>
   <p>{{ stationService.statusString }}</p>
 </md-card>
+<app-station-preview></app-station-preview>

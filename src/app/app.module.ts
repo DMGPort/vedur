@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { StationComponent } from './station/station.component';
 import { StationSelectComponent } from './station-select/station-select.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { StationPreviewComponent } from './station-preview/station-preview.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     PlaceFormComponent,
     AdminComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
+    StationPreviewComponent
   ],
   imports: [
     MaterialModule,

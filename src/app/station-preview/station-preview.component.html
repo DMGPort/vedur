@@ -1,0 +1,11 @@
+<md-card *ngIf="stationService.previewStation">
+  <md-card-title>{{ stationService.previewStation.name }}</md-card-title>
+  <md-card-content>
+    Time: {{ stationService.previewStation.time }}
+    Temp: {{ stationService.previewStation.temp }}
+    Wind: {{ stationService.previewStation.wind }}
+  </md-card-content>
+  <md-card-actions>
+    <button md-raised-button >Bæta í Safn</button>
+  </md-card-actions>
+</md-card>

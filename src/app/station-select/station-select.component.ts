@@ -20,7 +20,7 @@ export class StationSelectComponent implements OnInit {
     this.stationService.getStations(name);
   }
 
-  getStat(stNumber){
+  previewStation(stNumber){
     this.stationService.viewStation(stNumber);
   }
 
