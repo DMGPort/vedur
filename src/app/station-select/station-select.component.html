@@ -1,14 +1,14 @@
 <md-card>
-  <select (change)="selectChange(selectSection.value)" #selectSection>
+  <select (change)="selectChange(place.value)" #place>
     <option *ngFor="let place of stationService.landshlutar" [value]="place.name">
       {{ place.name }}
     </option>
   </select>
-  <select>
-    <option *ngFor="let s of stationService.stations">
+  <select #station>
+    <option *ngFor="let s of stationService.stations" [value]="s.stNumber">
       {{ s.name }}
     </option>
   </select>
-  <button md-button (click)="addStation()">Add</button>
-  <button (click)="check()" md-button>Check</button>
+  <button md-button (click)="getStat(station.value)">Sækja</button>
+  <p>{{ stationService.statusString }}</p>
 </md-card>
