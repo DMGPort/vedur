@@ -17,9 +17,9 @@ export class StationService {
    }
   //stations: FirebaseListObservable<Station[]>
 
-  appInit(){
+  appInit(name){
     this.getPlaces();
-    this.getStations();
+    this.getStations(name);
   }
 
   landshlutar: Place[];
@@ -31,13 +31,13 @@ export class StationService {
     return this.af.database.list('/landshlutar');
   }
   stations: Station[];
-  getStations(){
-    this.listStations()
+  getStations(name: string){
+    this.listStations(name)
       .subscribe(stat => this.stations = stat);
     console.log(this.stations)
   }
-  listStations(){
-    return this.af.database.list('/stations');
+  listStations(name){
+    return this.af.database.list('/stations/'+ name);
   }
     
   sortStations(){

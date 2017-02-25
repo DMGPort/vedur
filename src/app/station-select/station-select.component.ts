@@ -13,10 +13,11 @@ export class StationSelectComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.stationService.appInit("Faxaflói");
   }
   
   selectChange(name){
-    console.log(name)
+    this.stationService.getStations(name);
   }
 
   check(){

@@ -5,7 +5,9 @@
     </option>
   </select>
   <select>
-    <option>Allt Landið</option>
+    <option *ngFor="let s of stationService.stations">
+      {{ s.name }}
+    </option>
   </select>
   <button md-button (click)="addStation()">Add</button>
   <button (click)="check()" md-button>Check</button>
