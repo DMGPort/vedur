@@ -14,7 +14,7 @@ export class StationSelectComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.stationService.selectInit("Faxaflói");
+    this.stationService.selectInit("Faxaflói");  
   }
   
   selectChange(name){

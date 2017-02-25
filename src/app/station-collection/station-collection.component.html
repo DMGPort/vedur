@@ -1,17 +1,31 @@
 <div class="fam">
     <div class="mother">
-        <md-card class="child" *ngFor="let s of stationService.stationCollection">
-            <md-card-title><b class="heading">{{ s.name}}</b></md-card-title>
+        <md-card class="child" 
+        *ngFor="let s of stationService.stationCollection; let i = index"
+        [mdMenuTriggerFor]="options" #station>
+            <md-card-subtitle>
+                kl: {{ s.time | date:'HH:mm EEEE dd.MMM' }} <!--TODO: Væri gott að geta sýnt vikudag á íslensku -->
+            </md-card-subtitle>
+            <md-card-title>
+                <b class="heading">{{ s.name}}</b>
+                <b class="sub-heading" mdTooltip="Hæð yfir sjávarmáli">{{ s.altitude }} m</b>
+            </md-card-title>
             <md-card-content>
-    Time: {{ s.time }}
-    Temp: {{ s.temp }}
-    Wind: {{ s.wind }}
-          {{ s.direction }}
-          {{ s.altitude }}
-          {{ s.owner }} -
-          {{ s.since }} -
-          {{ s.type }}
+                <span class="weather-data">
+                    {{ s.temp }}°c |
+                    {{ s.wind }} m/s |
+                    {{ s.direction }}
+                </span>
             </md-card-content>
+            <md-card-subtitle class="basic-info">
+                {{ s.owner }} -
+                {{ s.since }}<br />
+                {{ s.type }}
+            </md-card-subtitle>
+            <md-menu class="options" #options="mdMenu">
+                <button md-menu-item (click)="update(i, s.stNumber)" >Uppfæra</button>
+                <button md-menu-item (click)="remove(s.stNumber)">Fjarlægja</button>
+            </md-menu>
         </md-card>
     </div>
 </div>

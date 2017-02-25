@@ -1,15 +1,17 @@
+<div class="col-md-8 col-md-offset-2">
 <md-card>
-  <select (change)="selectChange(place.value)" #place>
+  <select (change)="selectChange(place.value)" #place class="my-select">
     <option *ngFor="let place of stationService.landshlutar" [value]="place.name">
       {{ place.name }}
     </option>
   </select>
-  <select #station>
+  <select #station class="my-select">
     <option *ngFor="let s of stationService.stations; let i = index" [value]='i'>
         {{ s.name }}
     </option>
   </select>
   <button md-raised-button (click)="previewStation(station.value)">Sækja</button>
 </md-card>
+</div><div class="clearfix"></div><br />
 <app-station-preview></app-station-preview>
 <app-station-collection></app-station-collection>

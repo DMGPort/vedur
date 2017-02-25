@@ -1,19 +1,23 @@
 <md-card *ngIf="stationService.previewStationData">
   <md-card-title><b class="heading">{{ stationService.previewStationData.name }}</b></md-card-title>
-  <md-card-content>
+  <md-card-content *ngIf="stationService.previewStationData.valid == 1">
     Time: {{ stationService.previewStationData.time }}
     Temp: {{ stationService.previewStationData.temp }}
     Wind: {{ stationService.previewStationData.wind }}
           {{ stationService.previewStationData.direction }}
   </md-card-content>
+  <md-card-content *ngIf="stationService.previewStationData.valid != 1">
+    Gögn ekki tiltæk í augnablikinu
+  </md-card-content>
   <md-card-subtitle *ngIf="stationService.previewStationInfo">
     {{ stationService.previewStationInfo.altitude }} m/yfir sjó -
     {{ stationService.previewStationInfo.owner }} -
     {{ stationService.previewStationInfo.since }} -
-    {{ stationService.previewStationInfo.type }}
+    {{ stationService.previewStationInfo.type }} -
+    {{ stationService.previewStationInfo.location }}
   </md-card-subtitle>
   <md-card-actions>
     <button md-raised-button (click)="addToCollection()">Bæta í Safn</button>
-    <button md-raised-button (click)="clearPreviewStation()" >Hreinsa</button>
+    <button md-raised-button (click)="clearPreviewStation()" >Loka</button>
   </md-card-actions>
 </md-card>

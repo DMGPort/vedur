@@ -14,5 +14,12 @@ export class StationCollectionComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  update(index, stNumber){
+    this.stationService.updateStationData(index, stNumber);
+  }
+  remove(stNumber){
+    this.stationService.removeFromCollection(stNumber);
+  }
 
 }

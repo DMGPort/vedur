@@ -70,7 +70,48 @@ export class StationService {
   stationCollection: StationComplete[] = [];
   mergeThenAdd(){
     let stationComplete: StationComplete = Object.assign(this.previewStationData, this.previewStationInfo);
-    this.stationCollection.push(stationComplete)
+    if(stationComplete.valid == '0'){
+      alert("Engin Gögn Tiltæk") //TODO: gefa möguleika á að bæta samt við safn
+      return;
+    }
+    if(this.stationCollection.length == 0){
+        this.stationCollection.push(stationComplete);
+        return;         
+    }
+    if(this.stationCollection.length > 0){
+      for(let x = 0; x < this.stationCollection.length; x++){
+        if(this.stationCollection[x].stNumber == stationComplete.stNumber ){
+          alert("Stöð þegar í safni")
+          return;
+        }
+      }
+      this.stationCollection.push(stationComplete);      
+    }
+  }
+  updateStationData(index, stNumber){
+    this.getStationData(stNumber)
+      .subscribe(
+        data => {
+          let newData = new StationData(data.results[0].id ,data.results[0].name, data.results[0].time, data.results[0].T, data.results[0].F, data.results[0].D, data.results[0].valid );
+          if(newData.time != this.stationCollection[index].time){
+            this.stationCollection[index].time = newData.time;
+            this.stationCollection[index].temp = newData.temp;
+            this.stationCollection[index].wind = newData.wind;
+            this.stationCollection[index].direction = newData.direction;
+            alert("Gögn uppfærð")
+            return;
+          }else{
+            alert("Nýjustu gögn þegar til staðar")
+          }
+        }
+      );
+  }
+  removeFromCollection(stNumber){
+    for(let x = 0; x < this.stationCollection.length; x++){
+        if(this.stationCollection[x].stNumber == stNumber){
+          this.stationCollection.splice(x, 1);
+        }
+      }
   }
 
 }
