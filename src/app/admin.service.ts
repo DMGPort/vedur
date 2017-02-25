@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/Rx';
-import { Station } from './station';
+import { StationInfo } from './station-info';
 import { Place } from './place';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class AdminService {
   
   baseUrl: string = 'https://vedur3000-d017f.firebaseio.com';
 
-  addStation(place: string, station: Station){
+  addStation(place: string, station: StationInfo){
     const body = JSON.stringify(station)
     console.log(body);
     return this.http.post(this.baseUrl + "/"+ "stations" +"/"+ place +".json", body)

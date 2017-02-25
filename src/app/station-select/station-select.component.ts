@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StationService } from '../station.service';
+import { StationInfo } from '../station-info';
 
 @Component({
   selector: 'app-station-select',
@@ -20,8 +21,8 @@ export class StationSelectComponent implements OnInit {
     this.stationService.getStations(name);
   }
 
-  previewStation(stNumber){
-    this.stationService.viewStation(stNumber);
+  previewStation(index){
+    this.stationService.viewStation(index);
   }
 
 }

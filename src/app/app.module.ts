@@ -21,6 +21,7 @@ import { StationComponent } from './station/station.component';
 import { StationSelectComponent } from './station-select/station-select.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { StationPreviewComponent } from './station-preview/station-preview.component';
+import { StationCollectionComponent } from './station-collection/station-collection.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { StationPreviewComponent } from './station-preview/station-preview.compo
     AdminComponent,
     HomeComponent,
     NavigationComponent,
-    StationPreviewComponent
+    StationPreviewComponent,
+    StationCollectionComponent
   ],
   imports: [
     MaterialModule,

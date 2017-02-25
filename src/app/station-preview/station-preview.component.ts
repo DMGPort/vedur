@@ -14,5 +14,13 @@ export class StationPreviewComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  addToCollection(){
+    this.stationService.mergeThenAdd();
+  }
 
+  clearPreviewStation(){
+    this.stationService.previewStationData = undefined;
+    this.stationService.previewStationInfo = undefined;
+  }
 }

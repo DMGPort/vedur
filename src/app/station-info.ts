@@ -1,4 +1,4 @@
-export class Station {
+export class StationInfo {
     name: string;
     type: string;
     stNumber: number;

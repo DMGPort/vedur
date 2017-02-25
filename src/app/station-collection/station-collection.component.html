@@ -1,0 +1,17 @@
+<div class="fam">
+    <div class="mother">
+        <md-card class="child" *ngFor="let s of stationService.stationCollection">
+            <md-card-title><b class="heading">{{ s.name}}</b></md-card-title>
+            <md-card-content>
+    Time: {{ s.time }}
+    Temp: {{ s.temp }}
+    Wind: {{ s.wind }}
+          {{ s.direction }}
+          {{ s.altitude }}
+          {{ s.owner }} -
+          {{ s.since }} -
+          {{ s.type }}
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Station } from '../../station';
+import { StationInfo } from '../../station-info';
 import { AdminService } from '../../admin.service';
 
 @Component({
@@ -41,7 +41,7 @@ export class StationFormComponent implements OnInit {
   ];
 
   onSubmit(place,name,type,number,location,altitude,since,owner) {
-    let station: Station = {
+    let station: StationInfo = {
       name: name.value,
       type: type.value,
       stNumber: +number.value,
