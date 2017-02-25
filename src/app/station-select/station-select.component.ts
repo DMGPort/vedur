@@ -14,9 +14,15 @@ export class StationSelectComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  selectChange(name){
+    console.log(name)
+  }
 
   check(){
-
+    for(let x = 0; x < this.stationService.stations.length; x++){
+      console.log(this.stationService.stations[x]);
+    }
   }
 
 }

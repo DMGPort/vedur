@@ -1,15 +1,12 @@
 <md-card>
-  <md-select placeholder="Landshluti">
-    <md-option *ngFor="let place of stationService.landshlutar | async"  >
+  <select (change)="selectChange(selectSection.value)" #selectSection>
+    <option *ngFor="let place of stationService.landshlutar" [value]="place.name">
       {{ place.name }}
-    </md-option>
-  </md-select>
-  <md-select placeholder="Vedurstöð">
-    <md-option active >Allt Landið</md-option>
-    <md-option>Höfuðborgarsvæðið</md-option>
-    <md-option>Suðurland</md-option>
-    <md-option>Vesturland</md-option>
-  </md-select>
-  <button md-button>Add</button>
+    </option>
+  </select>
+  <select>
+    <option>Allt Landið</option>
+  </select>
+  <button md-button (click)="addStation()">Add</button>
   <button (click)="check()" md-button>Check</button>
 </md-card>
