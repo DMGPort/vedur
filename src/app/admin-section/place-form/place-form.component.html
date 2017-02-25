@@ -1,0 +1,12 @@
+<md-card>
+    <md-card-title>Bæta við Landshluta</md-card-title>
+    <md-card-content>
+      <md-input-container>
+        <input mdInput #place placeholder="Staður" type="text">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput #image placeholder="Mynd" type="text">
+      </md-input-container>
+    </md-card-content>
+    <button type="submit" md-raised-button (click)="onSubmit(place,image)">+</button>
+</md-card>
