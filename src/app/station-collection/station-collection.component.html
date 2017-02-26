@@ -11,10 +11,18 @@
                 <b class="sub-heading" mdTooltip="Hæð yfir sjávarmáli">{{ s.altitude }} m</b>
             </md-card-title>
             <md-card-content>
-                <span class="weather-data">
-                    {{ s.temp }}°c |
-                    {{ s.wind }} m/s |
-                    {{ s.direction }}
+                <span class="weather-data row">
+                    <div class="col-sm-6">
+                        {{ s.temp }}°c
+                    </div>
+                    <div class="col-sm-6">                    
+                        <div style="width:56px;height:56px" class="compass">
+                            <div style="font-size: 18px" class="direction">
+                                <p>{{ s.direction }}<span>{{ s.wind }} m/s</span></p>
+                            </div>
+                            <div class="arrow {{ s.direction }}"></div>
+                        </div>
+                    </div>
                 </span>
             </md-card-content>
             <md-card-subtitle class="basic-info">

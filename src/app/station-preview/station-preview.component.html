@@ -1,7 +1,13 @@
 <md-card *ngIf="stationService.previewStationData">
   <md-card-title><b class="heading">{{ stationService.previewStationData.name }}</b></md-card-title>
   <md-card-content *ngIf="stationService.previewStationData.valid == 1">
-    Time: {{ stationService.previewStationData.time }}
+  <div style="width:80px;height:80px" class="compass pull-right">
+    <div style="font-size: 28px" class="direction">
+      <p>{{ stationService.previewStationData.direction }}<span>{{ stationService.previewStationData.wind }} m/s</span></p>
+    </div>
+    <div class="arrow {{ stationService.previewStationData.direction }}"></div>
+  </div>
+    Time: {{ stationService.previewStationData.time | date:'HH:mm EEEE dd.MMM'}}
     Temp: {{ stationService.previewStationData.temp }}
     Wind: {{ stationService.previewStationData.wind }}
           {{ stationService.previewStationData.direction }}
