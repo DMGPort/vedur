@@ -17,9 +17,10 @@ export class StationSelectComponent implements OnInit {
     this.stationService.selectInit("Faxaflói");  
   }
   
-  placeChange(index){  
+  placeChange(index){
     let name = this.stationService.places[index].name;
     this.stationService.getStations(name);
+    this.stationService.getSearchList();
   }
 
   previewStation(placeIndex, stationIndex){

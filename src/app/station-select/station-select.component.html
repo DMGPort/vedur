@@ -1,17 +1,34 @@
 <div class="col-md-10 col-md-offset-1">
-<md-card *ngIf="stationService.places">
-  <select (change)="placeChange(place.value)" #place class="my-select">
-    <option *ngFor="let place of stationService.places; let in = index" [value]="in">
-        {{ place.name }}
-    </option>
-  </select>
-  <select #station class="my-select">
-    <option *ngFor="let s of stationService.stations; let i = index" [value]="i">
-        {{ s.name }}
-    </option>
-  </select>
-  <button md-raised-button (click)="previewStation(place.value, station.value)">Sækja</button>
-</md-card>
+  <table class="table" *ngIf="stationService.places">
+    <thead>
+      <tr>
+        <th>Landshluti</th>
+        <th>Stöð</th>
+        <th>Leit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <select #place class="my-select" (change)="placeChange(place.value)">
+            <option *ngFor="let place of stationService.places; let in = index" [value]="in">
+                {{ place.name }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <select #station class="my-select" (change)="previewStation(place.value, station.value)">
+            <option *ngFor="let s of stationService.stations; let i = index" [value]="i">
+                {{ s.name }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <app-search-stations></app-search-stations>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div><div class="clearfix"></div><br />
 <app-station-preview></app-station-preview>
 <app-station-collection></app-station-collection>

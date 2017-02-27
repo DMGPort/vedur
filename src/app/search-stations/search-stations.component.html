@@ -1,0 +1,7 @@
+<input class="my-select" placeholder="Finna Stöð" autocomplete="off" (blur)="onBlur()" [(ngModel)]="searchTerm" >
+<ul class="search-result">
+  <li *ngFor="let station of stationService.searchList | search:searchTerm"
+  (click)="previewStation(station)">
+    <span>{{ station.name }}</span>
+  </li> 
+</ul>

@@ -25,9 +25,12 @@ import { StationPreviewComponent } from './station-preview/station-preview.compo
 import { StationCollectionComponent } from './station-collection/station-collection.component';
 import { DynoDialogComponent } from './dyno-dialog/dyno-dialog.component';
 import { LoginComponent } from './login/login.component';
+import { SearchStationsComponent } from './search-stations/search-stations.component';
+import { SearchPipe } from './search-stations/search-filter.pipe';
 
 @NgModule({
   declarations: [
+    SearchPipe,
     AppComponent,
     StationComponent,
     StationSelectComponent,
@@ -39,7 +42,8 @@ import { LoginComponent } from './login/login.component';
     StationPreviewComponent,
     StationCollectionComponent,
     DynoDialogComponent,
-    LoginComponent
+    LoginComponent,
+    SearchStationsComponent
   ],
   imports: [
     MaterialModule,

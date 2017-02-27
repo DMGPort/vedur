@@ -17,12 +17,32 @@ export class StationService {
         private af: AngularFire
   ) {}
 
+  dummyStation: StationInfo = {
+    name: "Veldu Stöð",
+    type: "string",
+    stNumber: 0,
+    location: "string",
+    altitude: 0,
+    since: 0,
+    owner: "string",
+    image: "string",
+  }
+
   places: Place[]; //Array af landshlutum name/image frá Firebase
-  stations: StationInfo[]; //Array af stöðvum með info frá Firebase
+  placeName: string;
+  stations: StationInfo[] = []; //Array af stöðvum með info frá Firebase
+  searchList: StationInfo[] = []; //Array af stöðvum með info frá Firebase
   previewStationData: StationData = undefined;  //Svar frá api
   previewStationInfo: StationInfo = undefined; //Gögn um stöð frá Firebase
   stationCollection: StationComplete[] = [];
 
+  getSearchList(){
+    this.listSearch()
+      .subscribe(places => this.searchList = places);
+  }
+  listSearch(){
+    return this.af.database.list('/stations/'+ this.placeName);
+  }
   selectInit(place){
     this.getPlaces();
     this.getStations(place);
@@ -35,6 +55,7 @@ export class StationService {
     return this.af.database.list('/landshlutar');
   }
   getStations(name: string){
+    this.placeName = name;
     this.listStations(name)
       .subscribe(stat => this.stations = stat);
   }
@@ -59,6 +80,31 @@ export class StationService {
               data.results[0].valid );
               this.previewStationInfo = this.stations[stationIndex];
               this.previewStationInfo.image = this.places[placeIndex].image;
+          };
+        }
+      );
+  }
+  viewStationFromSearch(placeName: string, stationInfo: StationInfo){
+    let stNumber = stationInfo.stNumber;
+    this.getStationData(stNumber)
+      .subscribe(
+        data => {
+          if(data.results[0].valid == 0){
+            alert("Engin Gögn Tiltæk í augnablikinu")
+            return;
+          }          
+          if(data.results[0].valid == 1){
+            this.previewStationData = new StationData(
+              data.results[0].id ,data.results[0].name,
+              data.results[0].time, data.results[0].T,
+              +data.results[0].F, data.results[0].D,
+              this.fullWindDirection(data.results[0].D),
+              data.results[0].valid );
+              this.previewStationInfo = stationInfo;
+              for(let x = 0; x < this.places.length; x++){
+                if( this.places[x].name == placeName)
+                this.previewStationInfo.image = this.places[x].image;
+              }
           };
         }
       );

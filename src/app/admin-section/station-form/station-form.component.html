@@ -1,10 +1,10 @@
 <md-card>
     <md-card-title>Ný Stöð</md-card-title>
     <md-card-content>
-      <select placeholder="Landshluti" #place>
+      <select placeholder="Landshluti" #place class="my-select">
         <option *ngFor="let p of landshlutar" >{{ p.name }}</option>
       </select>
-      <select placeholder="Tegund" #type>
+      <select placeholder="Tegund" #type class="my-select">
         <option *ngFor="let t of tegund" [value]="t.name">{{ t.name }}</option>
       </select>
       <md-input-container>
@@ -22,7 +22,7 @@
       <md-input-container>    
         <input mdInput #since placeholder="Upphaf veðurathuguna" type="number">
       </md-input-container>
-      <select placeholder="Eigandi stöðvar" #owner>
+      <select placeholder="Eigandi stöðvar" #owner class="my-select">
         <option *ngFor="let o of eigendur" [value]="o.name">{{ o.name }}</option>
       </select>
     </md-card-content>
