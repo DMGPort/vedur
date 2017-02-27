@@ -11,14 +11,18 @@
           <div class="col-sm-2">
               {{ stationService.previewStationData.temp }}°c
           </div>
-          <div class="col-sm-2">                    
-            <div style="width:80px;height:80px" class="compass"><!--Wind Meter Start-->
-              <div style="font-size: 28px" class="direction">
-                <p>{{ stationService.previewStationData.direction }}<span>{{ stationService.previewStationData.wind }} m/s</span></p>
+          <div class="col-sm-2"><!--Wind Meter Start-->
+            <div style="width:100px;height:100px" class="compass" mdTooltip="{{ stationService.previewStationData.directionDetailed }}">
+              <div style="font-size:28px" class="direction">
+                <p>
+                  {{ stationService.previewStationData.direction }}
+                  <span *ngIf="stationService.previewStationData.direction != 'Logn'">{{ stationService.previewStationData.wind }} m/s</span>
+                </p>
+              <img class="avatar" md-card-avatar  [src]="stationService.previewStationInfo.image">
               </div>
               <div class="arrow {{ stationService.previewStationData.direction }}"></div>
-            </div>                                              <!--Wind Meter End-->
-          </div>
+            </div>
+          </div> <!--Wind Meter End-->
         </span>
       </md-card-content>
       <md-card-content *ngIf="stationService.previewStationData.valid != 1">
@@ -38,7 +42,7 @@
   </div>
   <div class="container col-md-6">
     <md-card>
-      <img md-card-image [src]="stationService.previewStationInfo.image">
+      <div id="mapid"></div>
     </md-card>
   </div>
 </div>

@@ -1,11 +1,17 @@
+.avatar{
+    max-height: 100%;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    margin: auto;
+}
 .compass {
   display: block;
-  border-radius: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .85);
   position: relative;
   font-family: 'Dosis';
   color: rgba(0, 0, 0, .75);
   text-shadow: 1px 1px 1px white;
+  z-index: 30;
 }
   compass:before {
     font-weight: bold;
@@ -15,16 +21,13 @@
     content: "N";
     font-size: 14px;
     top: -2px;
+    z-index: 30;    
   }
   .direction {
     height: 100%;
     width: 100%;
     display: block;
-    background: #f2f6f5;
-    background: -moz-linear-gradient(top, #f2f6f5 0%, #cbd5d6 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2f6f5), color-stop(100%, #cbd5d6));
-    background: -webkit-linear-gradient(top, #f2f6f5 0%, #cbd5d6 100%);
-    background: -o-linear-gradient(top, #f2f6f5 0%, #cbd5d6 100%);
+    background: transparent;
     border-radius: 100%;
   }
    .direction  p {

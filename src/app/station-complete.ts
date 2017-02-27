@@ -7,6 +7,7 @@ export class StationComplete {
         public temp: number,
         public wind: number,
         public direction: string,
+        public directionDetailed: string, //wind direction
         public valid: string,
         //StationInfo
         public type: string,
@@ -15,5 +16,6 @@ export class StationComplete {
         public altitude: number,
         public since: number,
         public owner: string,
+        public image: string
     ){}
 }

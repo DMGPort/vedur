@@ -46,11 +46,17 @@ export class StationService {
     this.getStationData(stNumber)
       .subscribe(
         data => {
-          this.previewStationData = new StationData(data.results[0].id ,data.results[0].name, data.results[0].time, data.results[0].T, data.results[0].F, data.results[0].D, data.results[0].valid );
+          this.previewStationData = new StationData(
+            data.results[0].id ,data.results[0].name,
+            data.results[0].time, data.results[0].T,
+            data.results[0].F, data.results[0].D,
+            this.fullWindDirection(data.results[0].D),
+            data.results[0].valid );
         }
       );
     this.previewStationInfo = this.stations[stationIndex];
     this.previewStationInfo.image = this.places[placeIndex].image;
+    console.log(this.previewStationData)
   }
   getStationData(stNumber): Observable<any>{//Finna leið til að redirecta gegnum https ??
     let stationUrl = "http://apis.is/weather/observations/is?stations="+stNumber+"&time=1h";
@@ -85,12 +91,13 @@ export class StationService {
     this.getStationData(stNumber)
       .subscribe(
         data => {
-          let newData = new StationData(data.results[0].id ,data.results[0].name, data.results[0].time, data.results[0].T, data.results[0].F, data.results[0].D, data.results[0].valid);
+          let newData = new StationData(data.results[0].id ,data.results[0].name, data.results[0].time, data.results[0].T, data.results[0].F, data.results[0].D, this.fullWindDirection(data.results[0].D), data.results[0].valid);
           if(newData.time != this.stationCollection[index].time){
             this.stationCollection[index].time = newData.time;
             this.stationCollection[index].temp = newData.temp;
             this.stationCollection[index].wind = newData.wind;
             this.stationCollection[index].direction = newData.direction;
+            this.stationCollection[index].directionDetailed = newData.directionDetailed;
             alert("Gögn uppfærð")
             return;
           }else{
@@ -107,4 +114,54 @@ export class StationService {
       }
   }
 
+  fullWindDirection(wind){
+    if(wind == "Logn"){
+      return "Logn"
+    }
+    if(wind == "SSV"){
+      return "Vindur úr suðsuðvesturátt."
+    }
+    if(wind == "SV"){
+      return "Vindur úr suðvesturátt."
+    }
+    if(wind == "VSV"){
+      return "Vindur úr vestsuðvesturátt"
+    }
+    if(wind == "V"){
+      return "Vindur úr vesturátt"
+    }
+    if(wind == "VNV"){
+      return "Vindur úr vestnorðvesturátt"
+    }
+    if(wind == "NV"){
+      return "Vindur úr norðvesturátt."
+    }
+    if(wind == "NNV"){
+      return "Vindur úr norðnorðvesturátt "
+    }
+    if(wind == "N"){
+      return "Vindur úr norðurátt."
+    }
+    if(wind == "NNA"){
+      return "Vindur úr norðnorðausturátt"
+    }
+    if(wind == "NA"){
+      return "Vindur úr norðausturátt."
+    }
+    if(wind == "ANA"){
+      return "Vindur úr austnorðausturátt"
+    }
+    if(wind == "A"){
+      return "Vindur úr austurátt."
+    }
+    if(wind == "ASA"){
+      return "Vindur úr austsuðausturátt"
+    }
+    if(wind == "SA"){
+      return "Vindur úr suðausturátt."
+    }
+    if(wind == "SSA"){
+      return "Vindur úr suðsuðausturátt "
+    }
+  }
 }

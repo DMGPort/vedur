@@ -11,6 +11,8 @@ export class StationPreviewComponent implements OnInit {
   constructor(
     private stationService: StationService
   ) { }
+  
+  windDirection: string = "test";
 
   ngOnInit() {
   }

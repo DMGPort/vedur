@@ -48,7 +48,8 @@ export class StationFormComponent implements OnInit {
       location: location.value,
       altitude: +altitude.value,
       since: +since.value,
-      owner: owner.value
+      owner: owner.value,
+      image: 'holder'
     }
     this.adminService.addStation(place.value, station);
     name.value = '';
