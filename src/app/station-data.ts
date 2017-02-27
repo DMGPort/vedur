@@ -6,6 +6,6 @@ export class StationData {
         public temp: number, //temp
         public wind: number, //wind
         public direction: string, //wind direction
-        public valid: string
+        public valid: string,
     ){}
 }

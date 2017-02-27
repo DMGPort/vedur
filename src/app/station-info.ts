@@ -6,4 +6,5 @@ export class StationInfo {
     altitude: number;
     since: number;
     owner: string;
+    image: string;
 }

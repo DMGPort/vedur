@@ -15,49 +15,44 @@ export class StationService {
   constructor(
         private http : Http,
         private af: AngularFire
-  ) {
-    //fylgjast með völdum stöðvum hér     
-   }
-  //stations: FirebaseListObservable<Station[]>
+  ) {}
 
-  selectInit(name){
+  places: Place[]; //Array af landshlutum name/image frá Firebase
+  stations: StationInfo[]; //Array af stöðvum með info frá Firebase
+  previewStationData: StationData = undefined;  //Svar frá api
+  previewStationInfo: StationInfo = undefined; //Gögn um stöð frá Firebase
+  stationCollection: StationComplete[] = [];
+
+  selectInit(place){
     this.getPlaces();
-    this.getStations(name);
+    this.getStations(place);
   }
-
-  landshlutar: Place[];
   getPlaces(){
     this.listPlaces()
-      .subscribe(places => this.landshlutar = places);
+      .subscribe(places => this.places = places);
   }
   listPlaces(){
     return this.af.database.list('/landshlutar');
   }
-
-  stations: StationInfo[];
   getStations(name: string){
     this.listStations(name)
       .subscribe(stat => this.stations = stat);
   }
-  listStations(name){
-    return this.af.database.list('/stations/'+ name);
+  listStations(place){
+    return this.af.database.list('/stations/'+ place);
   }
-
-  previewStationData: StationData = undefined; 
-  previewStationInfo: StationInfo = undefined;
-
-  viewStation(index){
-    let stNumber = this.stations[index].stNumber;
+  viewStation(placeIndex, stationIndex){
+    let stNumber = this.stations[stationIndex].stNumber;
     this.getStationData(stNumber)
       .subscribe(
         data => {
-          let stationResponse = new StationData(data.results[0].id ,data.results[0].name, data.results[0].time, data.results[0].T, data.results[0].F, data.results[0].D, data.results[0].valid );
-          this.previewStationData = stationResponse;
+          this.previewStationData = new StationData(data.results[0].id ,data.results[0].name, data.results[0].time, data.results[0].T, data.results[0].F, data.results[0].D, data.results[0].valid );
         }
       );
-    this.previewStationInfo = this.stations[index];
+    this.previewStationInfo = this.stations[stationIndex];
+    this.previewStationInfo.image = this.places[placeIndex].image;
   }
-  getStationData(stNumber): Observable<any>{
+  getStationData(stNumber): Observable<any>{//Finna leið til að redirecta gegnum https ??
     let stationUrl = "http://apis.is/weather/observations/is?stations="+stNumber+"&time=1h";
       return this.http.get(stationUrl)
       .map(response => response.json())
@@ -66,8 +61,6 @@ export class StationService {
          return Observable.throw(error.json())
       })
   }
-
-  stationCollection: StationComplete[] = [];
   mergeThenAdd(){
     let stationComplete: StationComplete = Object.assign(this.previewStationData, this.previewStationInfo);
     if(stationComplete.valid == '0'){
@@ -92,7 +85,7 @@ export class StationService {
     this.getStationData(stNumber)
       .subscribe(
         data => {
-          let newData = new StationData(data.results[0].id ,data.results[0].name, data.results[0].time, data.results[0].T, data.results[0].F, data.results[0].D, data.results[0].valid );
+          let newData = new StationData(data.results[0].id ,data.results[0].name, data.results[0].time, data.results[0].T, data.results[0].F, data.results[0].D, data.results[0].valid);
           if(newData.time != this.stationCollection[index].time){
             this.stationCollection[index].time = newData.time;
             this.stationCollection[index].temp = newData.temp;

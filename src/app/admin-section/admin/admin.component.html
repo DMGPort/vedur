@@ -4,6 +4,7 @@
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let place of stationService.landshlutar">
             {{ place.name }}
+            <img style="height:20px;width:20px" [src]="place.image" />
         </li>
     </ul>
 </div>

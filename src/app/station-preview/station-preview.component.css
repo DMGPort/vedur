@@ -4,3 +4,14 @@
     margin: 0 0;
     color: grey;
 }
+.sub-heading{
+    font-size: 15px;
+    font-family: 'Merriweather', serif;    
+    margin: 0 10px;
+    color: grey;
+}
+.weather-data{
+    padding-top: 30px;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
