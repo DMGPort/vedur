@@ -14,7 +14,9 @@ export class StationCollectionComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+  saveCollection(){
+    alert("Notandi verður að vera innskráður til að vista")
+  }
   update(index, stNumber){
     this.stationService.updateStationData(index, stNumber);
   }

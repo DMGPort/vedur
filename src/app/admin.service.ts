@@ -15,15 +15,14 @@ export class AdminService {
 
   addStation(place: string, station: StationInfo){
     const body = JSON.stringify(station)
-    console.log(body);
-    return this.http.post(this.baseUrl + "/"+ "stations" +"/"+ place +".json", body)
+    this.http.post(this.baseUrl + "/"+ "stations" +"/"+ place +".json", body)
                .map((res: Response) => res.json())
                .subscribe();
   }
 
   addPlace(landshluti: Place){
     const body = JSON.stringify(landshluti)
-    return this.http.post(this.baseUrl + "/"+ "landshlutar.json", body)
+    this.http.post(this.baseUrl + "/"+ "landshlutar.json", body)
                .map((res: Response) => res.json())
                .subscribe();
   }

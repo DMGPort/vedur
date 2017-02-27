@@ -49,14 +49,13 @@ export class StationService {
           this.previewStationData = new StationData(
             data.results[0].id ,data.results[0].name,
             data.results[0].time, data.results[0].T,
-            data.results[0].F, data.results[0].D,
+            +data.results[0].F, data.results[0].D,
             this.fullWindDirection(data.results[0].D),
             data.results[0].valid );
         }
       );
     this.previewStationInfo = this.stations[stationIndex];
     this.previewStationInfo.image = this.places[placeIndex].image;
-    console.log(this.previewStationData)
   }
   getStationData(stNumber): Observable<any>{//Finna leið til að redirecta gegnum https ??
     let stationUrl = "http://apis.is/weather/observations/is?stations="+stNumber+"&time=1h";
@@ -115,6 +114,10 @@ export class StationService {
   }
 
   fullWindDirection(wind){
+    if(wind == ""){
+      this.previewStationData.direction = "Logn";
+      return "Logn";
+    }
     if(wind == "Logn"){
       return "Logn"
     }

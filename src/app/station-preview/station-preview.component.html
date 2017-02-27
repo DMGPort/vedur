@@ -6,21 +6,21 @@
         <b class="sub-heading" mdTooltip="Hæð yfir sjávarmáli">{{ stationService.previewStationInfo.altitude }} m</b>
       </md-card-title>
       <md-card-content *ngIf="stationService.previewStationData.valid == 1">
-        {{ stationService.previewStationData.time | date:'HH:mm EEEE dd.MMM'}} <br />
+        {{ stationService.previewStationData.time | date:'HH:mm EEEE dd.MMM'}} <br /> <!--TODO: Væri gott að geta sýnt vikudag á íslensku -->
         <span class="weather-data row">
           <div class="col-sm-2">
               {{ stationService.previewStationData.temp }}°c
           </div>
           <div class="col-sm-2"><!--Wind Meter Start-->
-            <div style="width:100px;height:100px" class="compass" mdTooltip="{{ stationService.previewStationData.directionDetailed }}">
+            <div style="width:140px;height:140px" class="compass" mdTooltip="{{ stationService.previewStationData.directionDetailed }}">
               <div style="font-size:28px" class="direction">
                 <p>
                   {{ stationService.previewStationData.direction }}
-                  <span *ngIf="stationService.previewStationData.direction != 'Logn'">{{ stationService.previewStationData.wind }} m/s</span>
+                  <span>{{ stationService.previewStationData.wind }} m/s</span>
                 </p>
               <img class="avatar" md-card-avatar  [src]="stationService.previewStationInfo.image">
               </div>
-              <div class="arrow {{ stationService.previewStationData.direction }}"></div>
+              <div  *ngIf="stationService.previewStationData.wind > 0" class="arrow {{ stationService.previewStationData.direction }}"></div>
             </div>
           </div> <!--Wind Meter End-->
         </span>

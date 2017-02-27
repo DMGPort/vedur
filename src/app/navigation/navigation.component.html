@@ -8,5 +8,13 @@
       <li><a routerLink="/selectStation">Stöðvar</a></li>
       <li><a routerLink="/admin">Admin</a></li>
     </ul>
+    <button *ngIf="!accountService.isAuthenticated" (click)="openLogin()" type="button" class="btn btn-default navbar-btn pull-right">Innskrá</button>
+    <button [mdMenuTriggerFor]="account" *ngIf="accountService.isAuthenticated" type="button" class="btn btn-default navbar-btn pull-right">
+      {{accountService.displayName}}
+    </button>
+    <md-menu #account="mdMenu">
+      <button md-menu-item (click)="logout()">Útskrá</button>
+      <button md-menu-item>Item 2</button>
+    </md-menu>
   </div>
 </nav>

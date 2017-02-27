@@ -18,7 +18,8 @@ export class StationFormComponent implements OnInit {
 
   tegund = [
     {name: "Mönnuð skeytastöð"},
-    {name: "Sjálfvirk veðurathugunarstöð"}
+    {name: "Sjálfvirk veðurathugunarstöð"},
+    {name: "Synop-skeyti búið til úr Metar og sjálfvirkri athugun"}
   ];
   landshlutar = [
     {name: "Faxaflói"},
@@ -37,7 +38,8 @@ export class StationFormComponent implements OnInit {
     {name: "Vegagerðin"},
     {name: "Landsnet"},
     {name: "Landsvirkjun"},
-    {name: "Siglingastofnun"}
+    {name: "Siglingastofnun"},
+    {name: "Orkubú Vestfjarða"}
   ];
 
   onSubmit(place,name,type,number,location,altitude,since,owner) {

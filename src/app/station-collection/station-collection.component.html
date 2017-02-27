@@ -1,27 +1,30 @@
-<div class="fam">
+<div class="fam" *ngIf="stationService.stationCollection.length > 0"> 
+    <md-card-actions>
+        <button md-raised-button (click)="saveCollection()">Vista Safn</button>
+    </md-card-actions>
     <div class="mother">
         <md-card class="child" 
         *ngFor="let s of stationService.stationCollection; let i = index"
         [mdMenuTriggerFor]="options" #station>
             <md-card-subtitle>
-                kl: {{ s.time | date:'HH:mm EEEE dd.MMM' }} <!--TODO: Væri gott að geta sýnt vikudag á íslensku -->
+                {{ s.time | date:'HH:mm dd.MMM' }}
             </md-card-subtitle>
             <md-card-title>
                 <b class="heading">{{ s.name}}</b>
                 <b class="sub-heading" mdTooltip="Hæð yfir sjávarmáli">{{ s.altitude }} m</b>
             </md-card-title>
             <md-card-content>
-                <span class="weather-data row">
+                <span class="weather-data">
                     <div class="col-sm-6">
                         {{ s.temp }}°c
                     </div>
                     <div class="col-sm-6">                    
-                        <div style="width:56px;height:56px" class="compass">
+                        <div style="width:100px;height:100px" class="compass" mdTooltip="{{ s.directionDetailed }}">
                             <div style="font-size: 18px" class="direction">
-                                <p>{{ s.direction }}<span *ngIf="s.direction != 'Logn'">{{ s.wind }} m/s</span></p>
+                                <p>{{ s.direction }}<span *ngIf="s.wind > 0">{{ s.wind }} m/s</span></p>
                                 <img class="avatar" md-card-avatar  [src]="s.image">
                             </div>
-                            <div class="arrow {{ s.direction }}"></div>
+                            <div *ngIf="s.wind > 0" class="arrow {{ s.direction }}"></div>
                         </div>
                     </div>
                 </span>

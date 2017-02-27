@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { AngularFireModule } from 'angularfire2';
-import { FirebaseConfig } from './firebase-config';
+import { FirebaseConfig, FirebaseAuthGoogleConfig } from './firebase-config';
 
 import { AppRoutingModule } from './app-routing.module';
 import { StationService } from './station.service';
+import { AccountService } from './account.service';
 
 //admin
 import { AdminComponent } from './admin-section/admin/admin.component';
@@ -22,6 +23,8 @@ import { StationSelectComponent } from './station-select/station-select.componen
 import { NavigationComponent } from './navigation/navigation.component';
 import { StationPreviewComponent } from './station-preview/station-preview.component';
 import { StationCollectionComponent } from './station-collection/station-collection.component';
+import { DynoDialogComponent } from './dyno-dialog/dyno-dialog.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -34,17 +37,23 @@ import { StationCollectionComponent } from './station-collection/station-collect
     HomeComponent,
     NavigationComponent,
     StationPreviewComponent,
-    StationCollectionComponent
+    StationCollectionComponent,
+    DynoDialogComponent,
+    LoginComponent
   ],
   imports: [
     MaterialModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(FirebaseConfig),
+    AngularFireModule.initializeApp(FirebaseConfig, FirebaseAuthGoogleConfig),
     AppRoutingModule
   ],
-  providers: [ StationService ],
-  bootstrap: [AppComponent]
+  providers: [ StationService, AccountService ],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DynoDialogComponent,
+    LoginComponent
+  ]
 })
 export class AppModule { }

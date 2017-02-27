@@ -74,7 +74,7 @@
       margin-left: -5px;
       z-index: 99;
     }
-.arrow.Logn{ display: none}
+
 .arrow.SSV { transform: rotate(22.5deg); }
 .arrow.SV { transform: rotate(45deg); }
 .arrow.VSV { transform: rotate(67.5deg); }
