@@ -46,16 +46,22 @@ export class StationService {
     this.getStationData(stNumber)
       .subscribe(
         data => {
-          this.previewStationData = new StationData(
-            data.results[0].id ,data.results[0].name,
-            data.results[0].time, data.results[0].T,
-            +data.results[0].F, data.results[0].D,
-            this.fullWindDirection(data.results[0].D),
-            data.results[0].valid );
+          if(data.results[0].valid == 0){
+            alert("Engin Gögn Tiltæk í augnablikinu")
+            return;
+          }          
+          if(data.results[0].valid == 1){
+            this.previewStationData = new StationData(
+              data.results[0].id ,data.results[0].name,
+              data.results[0].time, data.results[0].T,
+              +data.results[0].F, data.results[0].D,
+              this.fullWindDirection(data.results[0].D),
+              data.results[0].valid );
+              this.previewStationInfo = this.stations[stationIndex];
+              this.previewStationInfo.image = this.places[placeIndex].image;
+          };
         }
       );
-    this.previewStationInfo = this.stations[stationIndex];
-    this.previewStationInfo.image = this.places[placeIndex].image;
   }
   getStationData(stNumber): Observable<any>{//Finna leið til að redirecta gegnum https ??
     let stationUrl = "http://apis.is/weather/observations/is?stations="+stNumber+"&time=1h";
@@ -68,13 +74,9 @@ export class StationService {
   }
   mergeThenAdd(){
     let stationComplete: StationComplete = Object.assign(this.previewStationData, this.previewStationInfo);
-    if(stationComplete.valid == '0'){
-      alert("Engin Gögn Tiltæk") //TODO: gefa möguleika á að bæta samt við safn
-      return;
-    }
     if(this.stationCollection.length == 0){
         this.stationCollection.push(stationComplete);
-        return;         
+        return;
     }
     if(this.stationCollection.length > 0){
       for(let x = 0; x < this.stationCollection.length; x++){
@@ -83,7 +85,7 @@ export class StationService {
           return;
         }
       }
-      this.stationCollection.push(stationComplete);      
+      this.stationCollection.push(stationComplete);    
     }
   }
   updateStationData(index, stNumber){

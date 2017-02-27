@@ -9,6 +9,7 @@
     height: auto;
 }
 .child {
+    margin-bottom: 20px;
     padding: 3em;           
     overflow: hidden;
     align-self: flex-start;
@@ -35,7 +36,7 @@
 }
 .weather-data{
     font-size: 24px;
-    margin-bottom: -40px;
+    margin-bottom: -20px;
 }
 .basic-info{
     margin-bottom: -40px;

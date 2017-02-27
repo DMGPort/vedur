@@ -1,17 +1,31 @@
 <div class="row" *ngIf="stationService.previewStationData">
-  <div class="container col-md-6">
-    <md-card>
+  <md-card class="no-style">
+    <div class="col-sm-3 col-sm-offset-3 info">
       <md-card-title>
-        <b class="heading">{{ stationService.previewStationData.name }}</b>
-        <b class="sub-heading" mdTooltip="Hæð yfir sjávarmáli">{{ stationService.previewStationInfo.altitude }} m</b>
+        <b class="heading">{{ stationService.previewStationData.name }}</b><br /> 
+        <b class="sub-heading">{{ stationService.previewStationData.time | date:'HH:mm EEEE dd.MMM'}}</b> <!--TODO: Væri gott að geta sýnt vikudag á íslensku -->        
       </md-card-title>
+      <md-card-content *ngIf="stationService.previewStationData.valid != 1">
+        Gögn ekki tiltæk í augnablikinu
+      </md-card-content>
+      <md-card-subtitle *ngIf="stationService.previewStationInfo">
+        {{ stationService.previewStationInfo.owner }} -
+        {{ stationService.previewStationInfo.since }} <br />
+        {{ stationService.previewStationInfo.type }}
+      </md-card-subtitle>
+      <md-card-actions>
+        <button class="pull-left" md-raised-button (click)="clearPreviewStation()" >Loka</button>
+        <button class="pull-right" md-raised-button (click)="addToCollection()">Bæta í Safn</button>
+      </md-card-actions>
+    </div>
+    <div class="col-sm-3">
       <md-card-content *ngIf="stationService.previewStationData.valid == 1">
-        {{ stationService.previewStationData.time | date:'HH:mm EEEE dd.MMM'}} <br /> <!--TODO: Væri gott að geta sýnt vikudag á íslensku -->
         <span class="weather-data row">
-          <div class="col-sm-2">
-              {{ stationService.previewStationData.temp }}°c
+          <div class="col-sm-6">
+            {{ stationService.previewStationData.temp }}°c<br /> 
+            <b class="sub-heading" mdTooltip="Hæð yfir sjávarmáli">{{ stationService.previewStationInfo.altitude }} m</b>             
           </div>
-          <div class="col-sm-2"><!--Wind Meter Start-->
+          <div class="col-sm-6"><!--Wind Meter Start-->
             <div style="width:140px;height:140px" class="compass" mdTooltip="{{ stationService.previewStationData.directionDetailed }}">
               <div style="font-size:28px" class="direction">
                 <p>
@@ -25,24 +39,6 @@
           </div> <!--Wind Meter End-->
         </span>
       </md-card-content>
-      <md-card-content *ngIf="stationService.previewStationData.valid != 1">
-        Gögn ekki tiltæk í augnablikinu
-      </md-card-content>
-      <md-card-subtitle *ngIf="stationService.previewStationInfo">
-        {{ stationService.previewStationInfo.owner }} -
-        {{ stationService.previewStationInfo.since }} <br />
-        {{ stationService.previewStationInfo.type }} -
-        {{ stationService.previewStationInfo.location }}
-      </md-card-subtitle>
-      <md-card-actions>
-        <button md-raised-button (click)="addToCollection()">Bæta í Safn</button>
-        <button md-raised-button (click)="clearPreviewStation()" >Loka</button>
-      </md-card-actions>
-    </md-card>
-  </div>
-  <div class="container col-md-6">
-    <md-card>
-      <div id="mapid"></div>
-    </md-card>
-  </div>
+    </div>
+  </md-card>
 </div>

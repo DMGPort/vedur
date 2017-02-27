@@ -1,5 +1,5 @@
 <div class="fam" *ngIf="stationService.stationCollection.length > 0"> 
-    <md-card-actions>
+    <md-card-actions *ngIf="stationService.stationCollection.length > 1">
         <button md-raised-button (click)="saveCollection()">Vista Safn</button>
     </md-card-actions>
     <div class="mother">
